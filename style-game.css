@@ -8,8 +8,8 @@
 #board-container {
     display: flex;
     /* width: 80%; */
-    flex-grow: 4;
-    justify-content: center;
+    /* flex-grow: 4; */
+    justify-content:center;
 
 }
 
@@ -21,10 +21,10 @@
     grid-template-rows: repeat(20, 1fr);
     grid-template-columns: repeat(20, 1fr);
 }
-
-.cell {
+.cell{
     /* background-image: ; */
-}
+} 
+
 
 .sky {
     background: rgb(173, 209, 246);
@@ -35,24 +35,23 @@
 }
 
 .dirt {
-    background: url(./images/dirt.jpg) no-repeat center center/cover;
-    activeTile:false;
+    background: url(./images/dirt.jpg) no-repeat center center/cover ;
 }
 
 .rock {
-    background: url(./images/rock.jpg) no-repeat center center/cover;
+    background: url(./images/rock.jpg) no-repeat center center/cover ;
 }
 
 .trunk {
-    background: url(./images/trunk.png) no-repeat center center/cover;
+    background: url(./images/trunk.png) no-repeat center center/cover ;
 }
 
 .leaves {
-    background: url(./images/leaves.jpg) no-repeat center center/cover;
+    background: url(./images/leaves.jpg) no-repeat center center/cover ;
 }
 
 .grass {
-    background: url(./images/grass.jpg) no-repeat center center/cover;
+    background: url(./images/grass.jpg) no-repeat center center/cover ;
 }
 
 .sun {
