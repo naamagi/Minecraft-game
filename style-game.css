@@ -26,13 +26,6 @@
 } 
 
 
-.sky {
-    background: rgb(173, 209, 246);
-}
-
-.cloud {
-    background: #fff;
-}
 
 .dirt {
     background: url(./images/dirt.jpg) no-repeat center center/cover ;
@@ -57,3 +50,42 @@
 .sun {
     background: rgb(219, 213, 21);
 }
+[pickableTile="false"]{
+    background: rgb(173, 209, 246);
+
+}
+
+/* #gameBoard .sky[pickableTile="false"]{
+    background: rgb(173, 209, 246);
+}
+
+#gameBoard .cloud[pickableTile="false"]{
+    background: #fff;
+}
+
+#gameBoard .sun[pickableTile="false"]{
+    background:  rgb(219, 213, 21);
+} */
+
+.sun {
+    background: rgb(219, 213, 21);
+}
+.sky {
+    background: rgb(173, 209, 246);
+}
+
+.cloud {
+    background: #fff;
+}
+
+/* #game-tools button{
+text-decoration:none;
+width:100%;
+background:none;
+cursor: grab;
+} */
+
+/* .nonpickable{
+    background: rgb(173, 209, 246);
+
+} */

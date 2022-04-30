@@ -13,14 +13,12 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0;
-    background-color: pink;
+    background-color: #000;
 }
 
 
-
-
 #tools, #game-tools {
-    background-color: #ccc;
+    background-color: #000;
     width: 10%;
     height: 100%;
     display: flex;
@@ -30,6 +28,9 @@ body {
 }
 
 #axe, #pickaxe, #shovel {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     width: 6vw;
     height: 6vw;
     margin-bottom: 2vh;
@@ -42,20 +43,24 @@ body {
     font-size: 1.3vw;
 }
 
-#axe {    background: url(./images/axe.png) no-repeat center center/cover ;
+#axe {
+    background: url(./images/axe.png) no-repeat center center/cover;
 }
 
-#pickaxe {    background: url(./images/pickaxe.png) no-repeat center center/cover;
+#pickaxe {
+    background: url(./images/pickaxe.png) no-repeat center center/cover;
+    background-size: 80%;
 }
 
-#shovel {    background: url(./images/shovel.jpg) no-repeat center center/cover ;
+#shovel {
+    background: url(./images/shovel.jpg) no-repeat center center/cover;
 }
 
 #bank {
     width: 4vw;
     height: 4vw;
     border: 1px solid #fff;
-    background: #000 no-repeat center center/cover ;
+    background: #000 no-repeat center center/cover;
 
 }
 
@@ -95,12 +100,8 @@ body {
 
 
 
-.snake {
-    background-color: hsl(200, 100%, 50%);
-    border: .25vmin solid black;
-}
 
-.food {
-    background-color: hsl(50, 100%, 50%);
-    border: .25vmin solid black;
+
+#game-tools #pickaxe, #axe, #shovel {
+    cursor: grab;
 }
