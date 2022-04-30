@@ -1,0 +1,41 @@
+#intro-page {
+    flex-direction: column;
+}
+
+#intro, #board-container {
+    width: 100vw;
+    /* height: 80vh; */
+}
+
+#tools, #game-tools {
+    width: 100vw;
+    height: 20vmin;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 1vh;
+}
+
+#axe, #pickaxe, #shovel {
+    width: 20vw;
+    height: 18vw;
+    font-size: 3vw;
+    margin-bottom: 1vh;
+}
+
+#bank {
+    width: 8vw;
+    height: 8vw;
+}
+
+#container {
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#board-container {
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 0;
+    /* height:100vh; */
+}

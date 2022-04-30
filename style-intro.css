@@ -1,0 +1,106 @@
+@import url('http://fonts.cdnfonts.com/css/minecraft-4');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    background-color: pink;
+}
+
+
+
+
+#tools, #game-tools {
+    background-color: #ccc;
+    width: 10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10vh;
+}
+
+#axe, #pickaxe, #shovel {
+    width: 6vw;
+    height: 6vw;
+    margin-bottom: 2vh;
+    border: 1px solid #fff;
+    text-align: center;
+    align-items: bottom;
+    box-sizing: border-box;
+    font-family: 'Minecraft', sans-serif;
+    color: #fff;
+    font-size: 1.3vw;
+}
+
+#axe {    background: url(./images/axe.png) no-repeat center center/cover ;
+}
+
+#pickaxe {    background: url(./images/pickaxe.png) no-repeat center center/cover;
+}
+
+#shovel {    background: url(./images/shovel.jpg) no-repeat center center/cover ;
+}
+
+#bank {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid #fff;
+    background: #000 no-repeat center center/cover ;
+
+}
+
+#intro-page, #container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+}
+
+#intro {
+    background-image: url("./images/dirt.jpg");
+    width: 90vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#game-name {
+    width: 30%;
+}
+
+#start-button {
+    background-color: aliceblue;
+    font-family: 'Minecraft', sans-serif;
+    padding: 0.3rem;
+    color: black;
+    font-weight: 600;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid #000;
+    text-decoration: none;
+}
+
+
+
+
+.snake {
+    background-color: hsl(200, 100%, 50%);
+    border: .25vmin solid black;
+}
+
+.food {
+    background-color: hsl(50, 100%, 50%);
+    border: .25vmin solid black;
+}

@@ -1,0 +1,60 @@
+#container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#board-container {
+    display: flex;
+    /* width: 80%; */
+    flex-grow: 4;
+    justify-content: center;
+
+}
+
+#game-board {
+    background-color: blueviolet;
+    width: 100vmin;
+    height: 100vmin;
+    display: grid;
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-columns: repeat(20, 1fr);
+}
+
+.cell {
+    /* background-image: ; */
+}
+
+.sky {
+    background: rgb(173, 209, 246);
+}
+
+.cloud {
+    background: #fff;
+}
+
+.dirt {
+    background: url(./images/dirt.jpg) no-repeat center center/cover;
+    activeTile:false;
+}
+
+.rock {
+    background: url(./images/rock.jpg) no-repeat center center/cover;
+}
+
+.trunk {
+    background: url(./images/trunk.png) no-repeat center center/cover;
+}
+
+.leaves {
+    background: url(./images/leaves.jpg) no-repeat center center/cover;
+}
+
+.grass {
+    background: url(./images/grass.jpg) no-repeat center center/cover;
+}
+
+.sun {
+    background: rgb(219, 213, 21);
+}
