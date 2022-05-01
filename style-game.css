@@ -69,7 +69,7 @@
 .sun {
     background: rgb(219, 213, 21);
 }
-.sky {
+.sky ,.sky-blue {
     background: rgb(173, 209, 246);
 }
 

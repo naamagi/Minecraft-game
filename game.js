@@ -23,9 +23,9 @@ let matrix = [
   [0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0],
   [0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0],
   [0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0],
-  [0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0],
-  [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0],
-  [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 4, 0, 0, 3],
+  [0, 0, 0, 5, 4, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 4, 5, 0, 0],
+  [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 3, 0, 0, 4, 0, 0, 0],
+  [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 3, 3, 3, 0, 0, 4, 0, 0, 3],
   [6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6],
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
@@ -99,16 +99,51 @@ functions.changeFunctionalityToTools = (event) => {
   pickedTool.setAttribute("activeTool", "true");
 };
 
+functions.changeFunctionalityOfBanks = (event) => {
+  const pickedBank = event.target;
+//   const emptyBank = true;
+  const banks = document.querySelectorAll(".bank");
+  for (const bank of banks) {
+    if (bank.getAttribute("activeBank")) {
+      bank.setAttribute("activeBank", "false");
+    }
+    if (
+      bank.getAttribute("className") == "leaves" ||
+      bank.getAttribute("className") == "trunk" ||
+      bank.getAttribute("className") == "grass" ||
+      bank.getAttribute("className") == "dirt" ||
+      bank.getAttribute("className") == "rock"
+    ) {
+    //   emptyBank = false;
+    pickedBank.setAttribute("activeBank", "true");
+    }
+  }
+//   if (!emptyBank) {
+   
+    // emptyBank = false;
+    }
+  
+;
+
 functions.initiateTools = () => {
   const tools = document.querySelectorAll(".tool");
   for (const tool of tools) {
     tool.setAttribute("activeTool", "false");
     tool.addEventListener("click", functions.changeFunctionalityToTools);
   }
- 
 };
 
 functions.initiateTools();
+
+functions.initiateBanks = () => {
+  const banks = document.querySelectorAll(".bank");
+  for (const bank of banks) {
+    bank.setAttribute("activeBank", "false");
+    bank.addEventListener("click", functions.changeFunctionalityOfBanks);
+  }
+};
+
+functions.initiateBanks();
 
 functions.pickTile = (event) => {
   const pickedTile = event.target;
@@ -116,24 +151,59 @@ functions.pickTile = (event) => {
   console.log(`${pickedTile.className}`);
   const classNameCopy = pickedTile.className;
   const matchingTool = tools.querySelector(`.${classNameCopy}`);
-
-  const chosenTool = tools.querySelector('div[activeTool="true"]');
-  console.log("chosenTool:" + chosenTool.className);
-
+  //   const chosenTool = tools.querySelector('div[activeTool="true"]');
+  //   console.log("chosenTool:" + chosenTool.className);
   const bank = tools.querySelector(`#bank-${classNameCopy}`);
-
-
   if (pickedTile.getAttribute("pickableTile") == "true") {
     if (matchingTool && matchingTool.getAttribute("activeTool") == "true") {
-        bank.classList.add(`${classNameCopy}`);
-   
-
-      console.log("bank:" + bank);
-      pickedTile.classList.add("sky");
+      bank.classList.add(`${classNameCopy}`);
+      bank.setAttribute("activeBank", "true");
+      pickedTile.classList.add("sky-blue");
       pickedTile.setAttribute("pickableTile", "false");
-     
     }
- 
+  }
+};
+
+functions.placeTile = (event) => {
+  const placeToPut = event.target;
+  console.log(placeToPut);
+
+  const banks = document.querySelectorAll(".bank");
+  console.log("1" + banks);
+  const chosenBank = document.querySelector('[activeBank="true"]');
+  console.log("2" + chosenBank);
+  console.log("3" + placeToPut.getAttribute("pickableTile"));
+  if (chosenBank && placeToPut.getAttribute("pickableTile") == "false") {
+    const tools = document.querySelectorAll(".tool");
+    for (const tool of tools) {
+      if (tool.getAttribute("activeTool")) {
+        tool.setAttribute("activeTool", "false");
+      }
+    }
+    const bankIdCopy = chosenBank.getAttribute("id");
+    console.log("4" + bankIdCopy);
+    // console.log(`${pickedTile.className}`);
+    const bankMaterial = bankIdCopy.slice(5);
+    console.log("5" + bankMaterial);
+    placeToPut.classList.remove("sky-blue");
+    placeToPut.classList.remove("sky");
+
+    placeToPut.classList.add(`${bankMaterial}`);
+    console.log("6" + placeToPut.classList);
+    placeToPut.setAttribute("pickableTile", "true");
+    chosenBank.setAttribute("activeBank", "false");
+
+    // const chosenTool = tools.querySelector('div[activeTool="true"]');
+    // console.log("chosenTool:" + chosenTool.className);
+    // const bank = tools.querySelector(`#bank-${classNameCopy}`);
+    // if (pickedTile.getAttribute("pickableTile") == "true") {
+    //   if (matchingTool && matchingTool.getAttribute("activeTool") == "true") {
+    //     bank.classList.add(`${classNameCopy}`);
+    //     console.log("bank:" + bank);
+    //     pickedTile.classList.add("sky");
+    //     pickedTile.setAttribute("pickableTile", "false");
+    //   }
+    // }
   }
 };
 
@@ -142,6 +212,7 @@ functions.addingFunctionalitiesToTiles = () => {
   const cells = gameBoard.children;
   for (const cell of cells) {
     cell.addEventListener("click", functions.pickTile);
+    cell.addEventListener("click", functions.placeTile);
   }
 };
 functions.addingFunctionalitiesToTiles();
