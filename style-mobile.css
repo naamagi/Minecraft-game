@@ -46,3 +46,9 @@
     flex-grow: 0;
     /* height:100vh; */
 }
+#restart,button{
+   padding:2px; 
+   text-decoration:none;
+   border:1px solid #ccc;
+   border-radius: 50%;
+}
