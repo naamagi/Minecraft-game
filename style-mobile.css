@@ -17,16 +17,23 @@
 }
 
 #axe, #pickaxe, #shovel {
-    width: 20vw;
-    height: 18vw;
+    width: 18vw;
+    height: 16vw;
     font-size: 3vw;
     margin-bottom: 1vh;
 }
 
-#bank {
+/* #bank {
+    width: 8vw;
+    height: 8vw;
+} */
+
+#bank-rock, #bank-dirt, #bank-grass, #bank-trunk, #bank-leaves {
     width: 8vw;
     height: 8vw;
 }
+
+
 
 #container {
     flex-direction: column;

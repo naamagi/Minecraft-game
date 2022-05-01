@@ -1,8 +1,4 @@
-// function main(currentTime){
-//     window.requestAnimationFrame(main)
-//     console.log(currentTime)
-// }
-// window.requestAnimationFrame(main)
+const functions = {};
 
 const tiles = {
   sky: 0,
@@ -23,9 +19,9 @@ let matrix = [
   [0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0],
-  [0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0],
+  [0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 0, 0],
+  [0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0],
   [0, 0, 5, 5, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 5, 5, 5, 5, 5, 0],
   [0, 0, 0, 5, 5, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0],
   [0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0],
@@ -37,7 +33,7 @@ let matrix = [
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ];
-const generateBoard = () => {
+functions.generateBoard = () => {
   const gameBoard = document.getElementById("game-board");
   for (let i = 0; i < 20; i++) {
     for (let j = 0; j < 20; j++) {
@@ -90,67 +86,62 @@ const generateBoard = () => {
   }
 };
 
-generateBoard();
+functions.generateBoard();
 
-const changeFunctionalityToTools = (event) => {
+functions.changeFunctionalityToTools = (event) => {
   const pickedTool = event.target;
-  const tools = document.querySelectorAll("#game-tools");
+  const tools = document.querySelectorAll(".tool");
   for (const tool of tools) {
-    if (tool.activeTool) {
+    if (tool.getAttribute("activeTool")) {
       tool.setAttribute("activeTool", "false");
     }
   }
   pickedTool.setAttribute("activeTool", "true");
 };
-const initiateTools = () => {
-  const tools = document.querySelectorAll("#game-tools");
+
+functions.initiateTools = () => {
+  const tools = document.querySelectorAll(".tool");
   for (const tool of tools) {
     tool.setAttribute("activeTool", "false");
-    tool.addEventListener("click", changeFunctionalityToTools);
+    tool.addEventListener("click", functions.changeFunctionalityToTools);
   }
-  //   const tool = event.target;
+ 
 };
 
-initiateTools();
-const pickTile = (event) => {
+functions.initiateTools();
+
+functions.pickTile = (event) => {
   const pickedTile = event.target;
   const tools = document.querySelector("#game-tools");
   console.log(`${pickedTile.className}`);
-  const className = pickedTile.className;
-  const matchingTool = tools.querySelector(`.${className}`);
+  const classNameCopy = pickedTile.className;
+  const matchingTool = tools.querySelector(`.${classNameCopy}`);
 
-  console.log("matchingtool:" + matchingTool.className);
   const chosenTool = tools.querySelector('div[activeTool="true"]');
   console.log("chosenTool:" + chosenTool.className);
 
-  const bank = tools.querySelector("#bank");
-  console.log("bank:" + bank.id);
-  console.log("pickedTile.pickableTile:" + pickedTile.getAttribute('pickableTile'));
-  console.log("matchingTool.activeTool:" + matchingTool.getAttribute('activeTool'));
-  console.log("pickedTile.className:" + pickedTile.className);
- 
-  if (pickedTile.getAttribute('pickableTile')) {
-    if (matchingTool.getAttribute('activeTool')) {
-      bank.classList.add(`${className}`);
-        pickedTile.classList.add("sky");
-      pickedTile.pickableTile = "false";
-      console.log("pickedTile.pickableTile:" + pickedTile.pickableTile);
+  const bank = tools.querySelector(`#bank-${classNameCopy}`);
 
-      //   bank.setAttribute("background", pickedTile.background);
-      //   pickedTile.setAttribute("background, ")
+
+  if (pickedTile.getAttribute("pickableTile") == "true") {
+    if (matchingTool && matchingTool.getAttribute("activeTool") == "true") {
+        bank.classList.add(`${classNameCopy}`);
+   
+
+      console.log("bank:" + bank);
+      pickedTile.classList.add("sky");
+      pickedTile.setAttribute("pickableTile", "false");
+     
     }
-    //     else{
-    // tool
-    //     }
+ 
   }
 };
 
-const addingFunctionalitiesToTiles = () => {
+functions.addingFunctionalitiesToTiles = () => {
   const gameBoard = document.getElementById("game-board");
   const cells = gameBoard.children;
   for (const cell of cells) {
-    cell.addEventListener("click", pickTile);
+    cell.addEventListener("click", functions.pickTile);
   }
 };
-
-addingFunctionalitiesToTiles();
+functions.addingFunctionalitiesToTiles();

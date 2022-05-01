@@ -56,11 +56,47 @@ body {
     background: url(./images/shovel.jpg) no-repeat center center/cover;
 }
 
-#bank {
+#bank-rock {
     width: 4vw;
     height: 4vw;
     border: 1px solid #fff;
-    background: #000 no-repeat center center/cover;
+    margin:0.5vw;
+    cursor: grab;
+
+}
+
+#bank-dirt {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid #fff;
+margin:0.5vw;cursor: grab;
+
+}
+
+#bank-grass {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid #fff;
+    margin:0.5vw;cursor: grab;
+
+
+}
+
+#bank-trunk {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid #fff;
+    margin:0.5vw;cursor: grab;
+
+
+}
+
+#bank-leaves {
+    width: 4vw;
+    height: 4vw;
+    border: 1px solid #fff;
+    margin:0.5vw;cursor: grab;
+
 
 }
 
