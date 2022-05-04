@@ -1,4 +1,3 @@
-const functions = {};
 
 const tiles = {
   sky: 0,
@@ -33,7 +32,78 @@ let matrix = [
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
   [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 ];
-functions.generateBoard = () => {
+const changeFunctionalityToTools = (event) => {
+  const pickedTool = event.target;
+  const allTools = document.querySelectorAll(".tool");
+  allTools.forEach((tool) => {
+    tool.setAttribute("activeTool", "false");
+  });
+  pickedTool.setAttribute("activeTool", "true");
+  const activeBank = document.querySelector('[activeBank="true"]');
+  if (activeBank) {
+    activeBank.setAttribute("activeBank", "false");
+  }
+  const activeTile = document.querySelector('[activeTile="true"]');
+  if (activeTile) {
+    activeTile.setAttribute("activeTile", "false");
+  }
+};
+
+const changeFunctionalityOfBanks = (event) => {
+  const pickedBank = event.target;
+
+  const activeTool = document.querySelector('[activeTool="true"]');
+  if (activeTool) {
+    activeTool.setAttribute("activeTool", "false");
+  }
+
+  if (pickedBank.getAttribute("fullBank") == "true") {
+
+    pickedBank.setAttribute("activeBank", "true");
+    const activeTile = document.querySelector('[activeTile="true"]');
+    if (activeTile) {
+      activeTile.setAttribute("activeTile", "false");
+    }
+  }
+};
+
+const changeTile = (event) => {
+  const activeBank = document.querySelector('[activeBank="true"]');
+  if (activeBank) {
+    placeTile(event);
+  } else {
+    pickTile(event);
+  }
+};
+
+const addingFunctionalitiesToTiles = () => {
+  const gameBoard = document.getElementById("game-board");
+  const cells = gameBoard.children;
+  for (const cell of cells) {
+    cell.addEventListener("click", changeTile);
+  }
+};
+
+const initiateBanks = () => {
+  const banks = document.querySelectorAll(".bank");
+  for (const bank of banks) {
+    bank.setAttribute("activeBank", "false");
+    bank.setAttribute("fullBank", "false");
+    bank.addEventListener("click", changeFunctionalityOfBanks);
+  }
+  addingFunctionalitiesToTiles();
+};
+
+const initiateTools = function () {
+  const tools = document.querySelectorAll(".tool");
+  for (const tool of tools) {
+    tool.setAttribute("activeTool", "false");
+    tool.addEventListener("click", changeFunctionalityToTools);
+  }
+  initiateBanks();
+};
+
+const generateBoard = () => {
   const gameBoard = document.getElementById("game-board");
   for (let i = 0; i < 20; i++) {
     for (let j = 0; j < 20; j++) {
@@ -41,42 +111,65 @@ functions.generateBoard = () => {
       switch (matrix[i][j]) {
         case 0:
           cell.classList.add("sky");
-          cell.setAttribute("pickableTile", "false");
+          cell.setAttribute("id", "sky");
 
+          cell.setAttribute("pickableTile", "false");
+          cell.setAttribute("activeTile", "false");
           break;
         case 1:
           cell.classList.add("cloud");
+          cell.setAttribute("id", "cloud");
+
           cell.setAttribute("pickableTile", "false");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 2:
           cell.classList.add("dirt");
+          cell.setAttribute("id", "dirt");
+
           cell.setAttribute("pickableTile", "true");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 3:
           cell.classList.add("rock");
+          cell.setAttribute("id", "rock");
+
           cell.setAttribute("pickableTile", "true");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 4:
           cell.classList.add("trunk");
+          cell.setAttribute("id", "trunk");
+
           cell.setAttribute("pickableTile", "true");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 5:
           cell.classList.add("leaves");
+          cell.setAttribute("id", "leaves");
+
           cell.setAttribute("pickableTile", "true");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 6:
           cell.classList.add("grass");
+          cell.setAttribute("id", "grass");
+
           cell.setAttribute("pickableTile", "true");
+          cell.setAttribute("activeTile", "false");
 
           break;
         case 7:
           cell.classList.add("sun");
+          cell.setAttribute("id", "sun");
+
           cell.setAttribute("pickableTile", "false");
+          cell.setAttribute("activeTile", "false");
 
           break;
         default:
@@ -84,135 +177,78 @@ functions.generateBoard = () => {
       gameBoard.appendChild(cell);
     }
   }
+  initiateTools();
 };
 
-functions.generateBoard();
+generateBoard();
 
-functions.changeFunctionalityToTools = (event) => {
-  const pickedTool = event.target;
-  const tools = document.querySelectorAll(".tool");
-  for (const tool of tools) {
-    if (tool.getAttribute("activeTool")) {
-      tool.setAttribute("activeTool", "false");
-    }
-  }
-  pickedTool.setAttribute("activeTool", "true");
-};
-
-functions.changeFunctionalityOfBanks = (event) => {
-  const pickedBank = event.target;
-//   const emptyBank = true;
-  const banks = document.querySelectorAll(".bank");
-  for (const bank of banks) {
-    if (bank.getAttribute("activeBank")) {
-      bank.setAttribute("activeBank", "false");
-    }
-    if (
-      bank.getAttribute("className") == "leaves" ||
-      bank.getAttribute("className") == "trunk" ||
-      bank.getAttribute("className") == "grass" ||
-      bank.getAttribute("className") == "dirt" ||
-      bank.getAttribute("className") == "rock"
-    ) {
-    //   emptyBank = false;
-    pickedBank.setAttribute("activeBank", "true");
-    }
-  }
-//   if (!emptyBank) {
-   
-    // emptyBank = false;
-    }
-  
-;
-
-functions.initiateTools = () => {
-  const tools = document.querySelectorAll(".tool");
-  for (const tool of tools) {
-    tool.setAttribute("activeTool", "false");
-    tool.addEventListener("click", functions.changeFunctionalityToTools);
-  }
-};
-
-functions.initiateTools();
-
-functions.initiateBanks = () => {
-  const banks = document.querySelectorAll(".bank");
-  for (const bank of banks) {
-    bank.setAttribute("activeBank", "false");
-    bank.addEventListener("click", functions.changeFunctionalityOfBanks);
-  }
-};
-
-functions.initiateBanks();
-
-functions.pickTile = (event) => {
+const pickTile = (event) => {
   const pickedTile = event.target;
   const tools = document.querySelector("#game-tools");
-  console.log(`${pickedTile.className}`);
   const classNameCopy = pickedTile.className;
   const matchingTool = tools.querySelector(`.${classNameCopy}`);
-  //   const chosenTool = tools.querySelector('div[activeTool="true"]');
-  //   console.log("chosenTool:" + chosenTool.className);
+  const chosenTool = tools.querySelector('[activeTool="true"]');
   const bank = tools.querySelector(`#bank-${classNameCopy}`);
-  if (pickedTile.getAttribute("pickableTile") == "true") {
-    if (matchingTool && matchingTool.getAttribute("activeTool") == "true") {
+  if (pickedTile.getAttribute("pickableTile") == "false") {
+    return;
+  } else if (matchingTool && matchingTool === chosenTool) {
+    pickedTile.setAttribute("activeTile", "true");
+    pickedTile.setAttribute("pickableTile", "false");
+    pickedTile.classList.add("sky-blue");
+
+    if (bank.getAttribute("fullBank") == "false") {
       bank.classList.add(`${classNameCopy}`);
-      bank.setAttribute("activeBank", "true");
-      pickedTile.classList.add("sky-blue");
-      pickedTile.setAttribute("pickableTile", "false");
+      bank.setAttribute("fullBank", "true");
     }
+    let text = +bank.innerText;
+    text++;
+    bank.innerText = text;
   }
 };
-
-functions.placeTile = (event) => {
-  const placeToPut = event.target;
-  console.log(placeToPut);
-
-  const banks = document.querySelectorAll(".bank");
-  console.log("1" + banks);
+const placeTile = (event) => {
   const chosenBank = document.querySelector('[activeBank="true"]');
-  console.log("2" + chosenBank);
-  console.log("3" + placeToPut.getAttribute("pickableTile"));
-  if (chosenBank && placeToPut.getAttribute("pickableTile") == "false") {
-    const tools = document.querySelectorAll(".tool");
-    for (const tool of tools) {
-      if (tool.getAttribute("activeTool")) {
-        tool.setAttribute("activeTool", "false");
-      }
-    }
+  console.log("chosenBank:" + chosenBank);
+  if (chosenBank.getAttribute("fullBank") == "false") {
+    return;
+  }
+  const placeToPut = event.target;
+  console.log("placeToPut"+placeToPut);
+
+
+
+  if (placeToPut.getAttribute("pickableTile") == "false") {
+    console.log("row 206!!");
+    placeToPut.setAttribute("activeTile", "true");
     const bankIdCopy = chosenBank.getAttribute("id");
-    console.log("4" + bankIdCopy);
-    // console.log(`${pickedTile.className}`);
+    console.log("bankIdCopy:"+ bankIdCopy);
     const bankMaterial = bankIdCopy.slice(5);
-    console.log("5" + bankMaterial);
+    console.log("bankMaterial:" +bankMaterial);
+
+    let numberOfTiles = +chosenBank.innerText;
+    chosenBank.innerText = --numberOfTiles;
+    console.log("numberOfTiles:" + chosenBank.innerText);
+    if (+chosenBank.innerText === 0) {
+      chosenBank.setAttribute("fullBank", "false");
+      console.log("bank ckass name:" + chosenBank.className);
+      chosenBank.classList.remove(`${bankMaterial}`);
+      console.log("chosenBank:" + chosenBank);
+      console.log("placeToPut:" + placeToPut);
+    }
     placeToPut.classList.remove("sky-blue");
     placeToPut.classList.remove("sky");
+    placeToPut.classList.remove("cloud");
+    placeToPut.classList.remove("sun");
+    placeToPut.classList.get
+    if(placeToPut.classList.length > 0) {
+    placeToPut.classList.remove(placeToPut.className);
+    }
+    console.log("placeToPut"+placeToPut.className);
 
     placeToPut.classList.add(`${bankMaterial}`);
-    console.log("6" + placeToPut.classList);
+    console.log("placeToPut"+placeToPut.className);
+
     placeToPut.setAttribute("pickableTile", "true");
     chosenBank.setAttribute("activeBank", "false");
-
-    // const chosenTool = tools.querySelector('div[activeTool="true"]');
-    // console.log("chosenTool:" + chosenTool.className);
-    // const bank = tools.querySelector(`#bank-${classNameCopy}`);
-    // if (pickedTile.getAttribute("pickableTile") == "true") {
-    //   if (matchingTool && matchingTool.getAttribute("activeTool") == "true") {
-    //     bank.classList.add(`${classNameCopy}`);
-    //     console.log("bank:" + bank);
-    //     pickedTile.classList.add("sky");
-    //     pickedTile.setAttribute("pickableTile", "false");
-    //   }
-    // }
+    placeToPut.setAttribute("activeTile", "false");
   }
 };
-
-functions.addingFunctionalitiesToTiles = () => {
-  const gameBoard = document.getElementById("game-board");
-  const cells = gameBoard.children;
-  for (const cell of cells) {
-    cell.addEventListener("click", functions.pickTile);
-    cell.addEventListener("click", functions.placeTile);
-  }
-};
-functions.addingFunctionalitiesToTiles();

@@ -4,10 +4,9 @@
 
 #intro, #board-container {
     width: 100vw;
-    /* height: 80vh; */
 }
 
-#tools, #game-tools {
+#tools, #game-tools, #tools-description {
     width: 100vw;
     height: 20vmin;
     flex-direction: row;
@@ -17,38 +16,41 @@
 }
 
 #axe, #pickaxe, #shovel {
-    width: 18vw;
-    height: 16vw;
+    width: 15vw;
+    height: 13vw;
     font-size: 3vw;
     margin-bottom: 1vh;
 }
 
-/* #bank {
-    width: 8vw;
-    height: 8vw;
-} */
+
 
 #bank-rock, #bank-dirt, #bank-grass, #bank-trunk, #bank-leaves {
     width: 8vw;
     height: 8vw;
 }
 
+#banks {
 
+    flex-direction: row;
+}
 
 #container {
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
 }
 
 #board-container {
     flex-direction: column;
     justify-content: flex-start;
     flex-grow: 0;
-    /* height:100vh; */
 }
-#restart,button{
-   padding:2px; 
-   text-decoration:none;
-   border:1px solid #ccc;
-   border-radius: 50%;
+
+#game-name {
+    width: 60%;
+}
+
+#game-tools {
+    flex-direction: column;
+    gap: 1vw
 }

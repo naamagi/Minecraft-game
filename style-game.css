@@ -1,14 +1,14 @@
 #container {
     display: flex;
     width: 100%;
+    height: 100%;
     justify-content: center;
     align-items: center;
 }
 
 #board-container {
     display: flex;
-    
-    justify-content:center;
+    justify-content: center;
 
 }
 
@@ -20,56 +20,47 @@
     grid-template-rows: repeat(20, 1fr);
     grid-template-columns: repeat(20, 1fr);
 }
-.cell{
-    /* background-image: ; */
-} 
 
 
+
+#banks {
+    display: flex;
+    flex-direction: column;
+}
 
 .dirt {
-    background: url(./images/dirt.jpg) no-repeat center center/cover ;
+    background: url(./images/dirt.jpg) no-repeat center center/cover;
 }
 
 .rock {
-    background: url(./images/rock.jpg) no-repeat center center/cover ;
+    background: url(./images/rock.jpg) no-repeat center center/cover;
 }
 
 .trunk {
-    background: url(./images/trunk.png) no-repeat center center/cover ;
+    background: url(./images/trunk.png) no-repeat center center/cover;
 }
 
 .leaves {
-    background: url(./images/leaves.jpg) no-repeat center center/cover ;
+    background: url(./images/leaves.jpg) no-repeat center center/cover;
 }
 
 .grass {
-    background: url(./images/grass.jpg) no-repeat center center/cover ;
+    background: url(./images/grass.jpg) no-repeat center center/cover;
 }
 
 .sun {
     background: rgb(219, 213, 21);
 }
-[pickableTile="false"]{
-    background: rgb(173, 209, 246);
 
-}
-
-/* #gameBoard .sky[pickableTile="false"]{
+[pickableTile="false"] {
     background: rgb(173, 209, 246);
 }
-
-#gameBoard .cloud[pickableTile="false"]{
-    background: #fff;
-}
-
-#gameBoard .sun[pickableTile="false"]{
-    background:  rgb(219, 213, 21);
-} */
 
 .sun {
     background: rgb(219, 213, 21);
 }
-.sky ,.sky-blue {
+
+.sky, .sky-blue {
     background: rgb(173, 209, 246);
 }
 
@@ -77,14 +68,24 @@
     background: #fff;
 }
 
-/* #game-tools button{
-text-decoration:none;
-width:100%;
-background:none;
-cursor: grab;
-} */
+#game-tools h2 {
+    color: #fff;
+    text-align: center;
+}
 
-/* .nonpickable{
-    background: rgb(173, 209, 246);
+.hidden {
+    background-color: black;
+}
 
-} */
+#restart {
+    padding: 1vw;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: yellow;
+    font-family: 'Minecraft', sans-serif;
+    font-size: 1.3vw;
+}
+
+a {
+    text-decoration: none;
+}
