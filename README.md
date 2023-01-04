@@ -7,7 +7,7 @@
 ------------------------------------------------
 ## Description
 
-Minecraft is a responsive game, created using Javascript, HTML and CSS. 
+Minecraft is a two-pages responsive game, created using Javascript, HTML and CSS. 
 
 The game purpose is to create structures using the existing blocks.
 
