@@ -7,13 +7,15 @@
 ------------------------------------------------
 ## Description
 
-The Minecraft game was created using Javascript, HTML and CSS.
+Minecraft is a responsive game, created using Javascript, HTML and CSS. 
 
 The game purpose is to create structures using the existing blocks.
 
-Demo: https://sparkling-quokka-26a4b4.netlify.app/
+## Demo
 
+https://sparkling-quokka-26a4b4.netlify.app/
 
+![minecraft](./minecraft_Naama.png)
 
 ------------------------------------------------
 ## Contributors
